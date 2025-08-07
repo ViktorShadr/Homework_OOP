@@ -1,15 +1,16 @@
-[project]
+[tool.poetry]
 name = "homework-oop"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "ViktorShadr",email = "v.viktor.shadrin@gmail.com"}
-]
+authors = ["ViktorShadr <v.viktor.shadrin@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pytest (>=8.4.1,<9.0.0)"
-]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+flake8 = "^7.3.0"
+black = "^25.1.0"
+isort = "^6.0.1"
+mypy = "^1.17.1"
 
 
 [build-system]

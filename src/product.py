@@ -1,5 +1,3 @@
-
-
 class Product:
     name: str
     description: str
@@ -11,4 +9,3 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
-
