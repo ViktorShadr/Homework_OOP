@@ -1,15 +1,12 @@
-[project]
+[tool.poetry]
 name = "homework-oop"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "ViktorShadr",email = "v.viktor.shadrin@gmail.com"}
-]
+authors = ["ViktorShadr <v.viktor.shadrin@gmail.com>"]
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-]
 
+[tool.poetry.dependencies]
+python = ">=3.13"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
