@@ -1,3 +1,8 @@
+from typing import List, Optional
+
+from src.product import Product
+
+
 class Category:
     name: str
     description: str
@@ -9,7 +14,8 @@ class Category:
 
         self.name = name
         self.description = description
-        self._products = products
+        self._products = products if products is not None else []
+
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
@@ -26,10 +32,6 @@ class Category:
             for p in self._products
         )
 
-
-    @property
-    def products(self):
-        return self._products
 
 
 
