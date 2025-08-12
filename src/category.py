@@ -1,8 +1,3 @@
-from typing import List, Optional
-
-from src.product import Product
-
-
 class Category:
     name: str
     description: str
@@ -19,20 +14,10 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
-
     def add_product(self, new_product):
-        self.product_count += 1
         self._products.append(new_product)
-
+        Category.product_count += 1
 
     @property
     def products(self):
-        return "".join(
-            f'{p.name}, {p.price} руб. Остаток: {p.quantity} шт.\n'
-            for p in self._products
-        )
-
-
-
-
-
+        return "".join(f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт.\n" for p in self._products)
