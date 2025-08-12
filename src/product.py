@@ -28,7 +28,9 @@ class Product:
         for product in existing_products:
             if product.name.lower() == product_data["name"].lower():
                 product.quantity += product_data["quantity"]
-                product.price = max(product.price, product_data["price"])
+                # Обновляем цену, если она больше текущей
+                if product_data["price"] > product.price:
+                    product.price = product_data["price"]
                 return product
 
         # Создание нового товара
@@ -44,5 +46,15 @@ class Product:
     def price(self, new_price):
         if new_price <= 0:
             print("Цена не должна быть нулевая или отрицательная")
-        else:
-            self._price = new_price
+            return
+
+        if new_price > self._price:
+            self._price = new_price  # повышение — без вопросов
+        elif new_price < self._price:
+            user_input = input("Вы точно хотите снизить цену?(y/n)").lower()
+            if user_input == "y":
+                self._price = new_price
+
+
+
+
