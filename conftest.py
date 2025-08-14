@@ -41,3 +41,8 @@ def example_data():
             ],
         },
     ]
+
+
+@pytest.fixture
+def categories(example_data):
+    return [Category(d["name"], d["description"], [Product(**p) for p in d["products"]]) for d in example_data]

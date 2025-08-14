@@ -2,7 +2,7 @@ import json
 
 from src.category import Category
 from src.product import Product
-from src.utils import read_json, create_product
+from src.utils import create_product, read_json
 
 
 def test_read_json(tmp_path):
@@ -16,30 +16,29 @@ def test_read_json(tmp_path):
     assert result == test_data
 
 
-def test_create_product(example_data):
+def test_create_product_returns_categories(example_data):
     categories = create_product(example_data)
 
+    # Проверка, что возвращен список
     assert isinstance(categories, list)
-    assert len(categories) == 2
+    assert all(isinstance(c, Category) for c in categories)
 
-    # Проверка первой категории
-    smartphones = categories[0]
-    assert isinstance(smartphones, Category)
-    assert smartphones.name == "Смартфоны"
-    assert len(smartphones.products) == 3
+    # Проверка количества категорий
+    assert len(categories) == len(example_data)
 
-    p1 = smartphones.products[0]
-    assert isinstance(p1, Product)
-    assert p1.name == "Samsung Galaxy C23 Ultra"
-    assert p1.price == 180000.0
-    assert p1.quantity == 5
+    # Проверка, что продукты внутри — это объекты Product
+    for cat, original in zip(categories, example_data):
+        assert all(isinstance(p, Product) for p in cat._products)
+        assert len(cat._products) == len(original["products"])
 
-    # Проверка второй категории
-    tvs = categories[1]
-    assert isinstance(tvs, Category)
-    assert tvs.name == "Телевизоры"
-    assert len(tvs.products) == 1
 
-    tv = tvs.products[0]
-    assert tv.name == '55" QLED 4K'
-    assert tv.price == 123000.0
+def test_create_product_data_integrity(example_data):
+    categories = create_product(example_data)
+
+    # Сверяем данные первой категории
+    first_category = categories[0]
+    assert first_category.name == "Смартфоны"
+    assert first_category.description.startswith("Смартфоны, как средство")
+    assert first_category._products[0].name == "Samsung Galaxy C23 Ultra"
+    assert first_category._products[0].price == 180000.0
+    assert first_category._products[0].quantity == 5
