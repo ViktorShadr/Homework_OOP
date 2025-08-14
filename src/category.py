@@ -12,10 +12,7 @@ class Category:
 
         self.name = name
         self.description = description
-        self._products = [
-            p if isinstance(p, Product) else Product(**p)
-            for p in (products or [])
-        ]
+        self._products = [p if isinstance(p, Product) else Product(**p) for p in (products or [])]
 
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
@@ -27,23 +24,14 @@ class Category:
     @property
     def products(self) -> str:
         """Возвращает строку с товарами в формате для теста"""
-        return "\n".join(
-            f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт."
-            for p in self._products
-        )
+        return "\n".join(f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт." for p in self._products)
 
     @property
     def products_list(self) -> list:
         """Возвращает список объектов Product"""
         return self._products
 
-
     def __str__(self):
-        return (
-            "".join(f"{self.name}, количество продуктов: "
-            f"{sum(product.quantity for product in self._products)} шт.\n")
+        return "".join(
+            f"{self.name}, количество продуктов: " f"{sum(product.quantity for product in self._products)} шт.\n"
         )
-
-
-
-

@@ -4,14 +4,11 @@ class CategoryIterator:
         self._products = category.products_list
         self.index = 0
 
-
     def __repr__(self):
         return f"{self.__class__.__name__}({self._products})"
 
-
     def __iter__(self):
         return self
-
 
     def __next__(self):
         if self.index < len(self._products):

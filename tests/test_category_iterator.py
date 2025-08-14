@@ -2,12 +2,9 @@ from src.category import Category
 from src.category_iterator import CategoryIterator
 from src.product import Product
 
+
 def test_category_iterator_simple(example_data):
-    category = Category(
-        example_data[0]["name"],
-        example_data[0]["description"],
-        example_data[0]["products"]
-    )
+    category = Category(example_data[0]["name"], example_data[0]["description"], example_data[0]["products"])
 
     iterator = CategoryIterator(category)
 
@@ -21,11 +18,7 @@ def test_category_iterator_simple(example_data):
 
 def test_category_iterator_repr(example_data):
     # Создаем категорию
-    category = Category(
-        example_data[0]["name"],
-        example_data[0]["description"],
-        example_data[0]["products"]
-    )
+    category = Category(example_data[0]["name"], example_data[0]["description"], example_data[0]["products"])
 
     # Создаем итератор
     iterator = CategoryIterator(category)
