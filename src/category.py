@@ -18,6 +18,6 @@ class Category:
         self._products.append(new_product)
         Category.product_count += 1
 
-    @property
-    def products(self):
-        return "".join(f"{p.name}, {p.price} руб. Остаток: {p.quantity} шт.\n" for p in self._products)
+
+    def __str__(self):
+        return "".join(f"{self.name}, количество продуктов: {sum(product.quantity for product in self._products)} шт.\n" )

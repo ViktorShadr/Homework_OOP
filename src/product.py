@@ -56,5 +56,8 @@ class Product:
                 self.__price = new_price
 
 
+    def __str__(self):
+        return "".join(f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.")
+
 
 
