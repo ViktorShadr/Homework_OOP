@@ -1,3 +1,6 @@
+from src.product import Product
+
+
 class Category:
     name: str
     description: str
@@ -18,6 +21,17 @@ class Category:
         self._products.append(new_product)
         Category.product_count += 1
 
+    @property
+    def products(self):
+        return self._products
+
 
     def __str__(self):
-        return "".join(f"{self.name}, количество продуктов: {sum(product.quantity for product in self._products)} шт.\n" )
+        return (
+            "".join(f"{self.name}, количество продуктов: "
+            f"{sum(product.quantity for product in self._products)} шт.\n")
+        )
+
+
+
+

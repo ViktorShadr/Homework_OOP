@@ -38,9 +38,11 @@ class Product:
         existing_products.append(new_product)
         return new_product
 
+
     @property
     def price(self):
         return self.__price
+
 
     @price.setter
     def price(self, new_price):
@@ -58,6 +60,23 @@ class Product:
 
     def __str__(self):
         return "".join(f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.")
+
+
+    @property
+    def total_cost(self):
+        """Стоимость товара"""
+        return self.price * self.quantity
+
+
+    def __add__(self, other):
+        """Складываем стоимость двух товаров"""
+        if isinstance(other, Product):
+            return self.total_cost + other.total_cost
+        return NotImplemented
+
+
+    def __repr__(self):
+        return f"Product({self.name!r}, price={self.price}, quantity={self.quantity})"
 
 
 
