@@ -1,7 +1,7 @@
 class CategoryIterator:
 
     def __init__(self, category):
-        self._products = category.products
+        self._products = category.products_list
         self.index = 0
 
 
