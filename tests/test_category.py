@@ -1,3 +1,5 @@
+import pytest
+
 from src.category import Category
 from src.product import Product
 
@@ -79,5 +81,25 @@ def test_add_product_increases_count_and_list(example_data):
     # Проверяем, что внутренний список продуктов увеличился на 1
     assert len(cat._products) == initial_products_len + 1
 
-    # Можно дополнительно проверить, что последний продукт — это новый продукт
+    # Дополнительная проверка, что последний продукт — это новый продукт
     assert cat._products[-1] == new_product
+
+
+def test_add_product_raises_type_error():
+    category = Category("Смартфоны", "Категория для телефонов", [])
+
+    with pytest.raises(TypeError):
+        category.add_product("не продукт")  # любая строка вместо Product
+
+
+def test_category_str(example_data):
+    # берём первую категорию (Смартфоны)
+    category_data = example_data[0]
+    products = [Product(**p) for p in category_data["products"]]
+
+    category = Category(category_data["name"], category_data["description"], products)
+
+    # quantity: 5 + 8 + 14 = 27
+    expected = "Смартфоны, количество продуктов: 27 шт.\n"
+
+    assert str(category) == expected
