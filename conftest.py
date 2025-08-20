@@ -46,3 +46,12 @@ def example_data():
 @pytest.fixture
 def categories(example_data):
     return [Category(d["name"], d["description"], [Product(**p) for p in d["products"]]) for d in example_data]
+
+
+@pytest.fixture
+def smartphone1_data():
+    return "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5, 95.5, "S23 Ultra", 256, "Серый"
+
+@pytest.fixture
+def smartphone2_data():
+    return "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
