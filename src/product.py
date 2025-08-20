@@ -58,16 +58,13 @@ class Product:
     def __str__(self):
         return "".join(f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт.")
 
-    @property
-    def total_cost(self):
-        """Стоимость товара"""
-        return self.price * self.quantity
-
     def __add__(self, other):
-        """Складываем стоимость двух товаров"""
-        if isinstance(other, Product):
-            return self.total_cost + other.total_cost
-        return NotImplemented
+        """Складываем стоимость двух товаров из одинаковых классов продуктов"""
+        if type(self) is type(other):
+            total_sum = self.price * self.quantity
+            total_sum_other = other.price * other.quantity
+            return total_sum + total_sum_other
+        raise TypeError
 
     def __repr__(self):
         return f"Product({self.name!r}, price={self.price}, quantity={self.quantity})"
