@@ -95,11 +95,11 @@ def test_add_same_class():
 
 
 def test_add_different_classes_raises():
-    s = Smartphone("Samsung", "Galaxy", 1000.0, 3, 90.0, "S23", 256, "Серый")
-    l = LawnGrass("Газон", "Трава", 500.0, 10, "Россия", "7 дней", "Зеленый")
+    smart = Smartphone("Samsung", "Galaxy", 1000.0, 3, 90.0, "S23", 256, "Серый")
+    lawn = LawnGrass("Газон", "Трава", 500.0, 10, "Россия", "7 дней", "Зеленый")
 
     with pytest.raises(TypeError):
-        result = s + l
+        _ = smart + lawn
 
 
 def test_product_str():
