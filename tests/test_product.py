@@ -1,6 +1,8 @@
 import pytest
 
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_new_product_creates_new():
@@ -81,3 +83,26 @@ def test_price_setter_lower_price_with_decline(monkeypatch):
 
     product.price = 4000
     assert product.price == 5000
+
+
+def test_add_same_class():
+    s1 = Smartphone("Samsung", "Galaxy", 1000.0, 3, 90.0, "S23", 256, "Серый")
+    s2 = Smartphone("Iphone", "15", 2000.0, 2, 95.0, "15", 512, "Черный")
+
+    # стоимость: 1000*3 + 2000*2 = 3000 + 4000 = 7000
+    result = s1 + s2
+    assert result == 7000.0
+
+
+def test_add_different_classes_raises():
+    smart = Smartphone("Samsung", "Galaxy", 1000.0, 3, 90.0, "S23", 256, "Серый")
+    lawn = LawnGrass("Газон", "Трава", 500.0, 10, "Россия", "7 дней", "Зеленый")
+
+    with pytest.raises(TypeError):
+        _ = smart + lawn
+
+
+def test_product_str():
+    product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    expected = "Iphone 15, 210000.0 руб. Остаток: 8 шт."
+    assert str(product) == expected
