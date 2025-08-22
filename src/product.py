@@ -71,5 +71,5 @@ class Product(BaseProduct, MixinPrint):
             return total_sum + total_sum_other
         raise TypeError
 
-    def __repr__(self):
-        return f"Product({self.name!r}, price={self.price}, quantity={self.quantity})"
+    # def __repr__(self):
+    #     return f"{self.__class__.__name__}, {self.name}, {self.description}, {self.price}, {self.quantity}"
