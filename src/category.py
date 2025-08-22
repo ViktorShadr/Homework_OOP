@@ -11,6 +11,7 @@ class Category(BaseOrder):
 
     def __init__(self, name, description, products):
 
+        super().__init__(name, description)
         self.name = name
         self.description = description
         self._products = [p if isinstance(p, Product) else Product(**p) for p in (products or [])]
