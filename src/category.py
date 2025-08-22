@@ -1,7 +1,8 @@
+from src.base_order import BaseOrder
 from src.product import Product
 
 
-class Category:
+class Category(BaseOrder):
     name: str
     description: str
     products: list
@@ -10,6 +11,7 @@ class Category:
 
     def __init__(self, name, description, products):
 
+        super().__init__(name, description)
         self.name = name
         self.description = description
         self._products = [p if isinstance(p, Product) else Product(**p) for p in (products or [])]

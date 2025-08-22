@@ -1,4 +1,8 @@
-class Product:
+from src.base_product import BaseProduct
+from src.mixin_print import MixinPrint
+
+
+class Product(BaseProduct, MixinPrint):
     name: str
     description: str
     price: float
@@ -9,6 +13,7 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     @classmethod
     def new_product(cls, product_data: dict, existing_products: list = None):
@@ -66,5 +71,5 @@ class Product:
             return total_sum + total_sum_other
         raise TypeError
 
-    def __repr__(self):
-        return f"Product({self.name!r}, price={self.price}, quantity={self.quantity})"
+    # def __repr__(self):
+    #     return f"{self.__class__.__name__}, {self.name}, {self.description}, {self.price}, {self.quantity}"
